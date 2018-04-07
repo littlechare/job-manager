@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.littlehow.job.manager.mapper.job.TaskManagerMapper" >
+  <sql id="Base_Column_List" >
+    task_id as taskId, business_id as businessId,
+    task_type as taskType, expression,
+    callback_url as callbackUrl,
+    create_time as createTime, update_time as updateTime
+  </sql>
+  <insert id="insertTask" parameterType="com.littlehow.job.manager.model.job.TaskManager">
+    insert into job.task_manager(business_id,task_id,task_type,expression, callback_url, deleted)
+    values (
+    #{businessId}, #{taskId}, #{taskType}, #{expression},#{callbackUrl}, 0
+    );
+  </insert>
+
+  <select id="selectByBusinessId" resultType="com.littlehow.job.manager.model.job.TaskManager">
+    select <include refid="Base_Column_List"/>
+    from job.task_manager
+    where business_id=#{businessId}
+    and deleted=0
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.littlehow.job.manager.model.job.TaskManager">
+    select <include refid="Base_Column_List"/>
+    from job.task_manager
+    where business_id=#{businessId}
+    and task_id=#{taskId}
+    and deleted=0
+  </select>
+
+  <select id="selectAll" resultType="com.littlehow.job.manager.model.job.TaskManager">
+    select <include refid="Base_Column_List"/>
+    from job.task_manager
+    where deleted=0
+  </select>
+
+  <update id="changeTaskByPrimaryKey" parameterType="com.littlehow.job.manager.model.job.TaskManager">
+    update job.task_manager set expression=#{expression}, callback_url=#{callbackUrl}
+    where business_id=#{businessId} and task_id=#{taskId}
+    and deleted=0
+  </update>
+
+  <update id="deleteTaskByPrimaryKey">
+    update job.task_manager set deleted=1
+    where business_id=#{businessId} and task_id=#{taskId}
+    and deleted=0
+  </update>
+</mapper>

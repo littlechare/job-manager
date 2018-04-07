@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+  "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <!-- 引入配置文件 -->
+  <properties resource="mybatis/generator.properties"/>
+  <!--classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 可选 -->
+  <!--<classPathEntry location="D:\generator_mybatis\mysql-connector-java-5.1.44-bin.jar" /> -->
+
+  <!-- 一个数据库一个context -->
+  <!--defaultModelType="flat" 大数据字段，不分表 -->
+  <context defaultModelType="flat" id="pay" targetRuntime="MyBatis3">
+    <property name="autoDelimitKeywords" value="true"/>
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+    <property name="javaFileEncoding" value="utf-8"/>
+    <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />-->
+    <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />-->
+
+    <!-- 注释 -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/><!-- 是否取消注释 -->
+      <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳-->
+    </commentGenerator>
+
+    <!-- jdbc连接 -->
+    <jdbcConnection connectionURL="${job_jdbc_url}" driverClass="${jdbc_driver}"
+      password="${job_jdbc_password}" userId="${job_jdbc_user}"/>
+
+    <!-- 生成实体类地址 -->
+    <javaModelGenerator targetPackage="${package}.model.job" targetProject="${project}">
+      <property name="enableSubPackages" value="false"/>
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <!-- 生成mapxml文件 -->
+    <sqlMapGenerator targetPackage="mybatis.sql-map.job" targetProject="${resources}">
+      <property name="enableSubPackages" value="false"/>
+    </sqlMapGenerator>
+
+    <!-- 生成mapxml对应client，也就是接口mapper -->
+    <javaClientGenerator targetPackage="${package}.mapper.job" targetProject="${project}"
+      type="XMLMAPPER">
+      <property name="enableSubPackages" value="false"/>
+    </javaClientGenerator>
+
+    <table enableCountByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"
+           tableName="task_manager" catalog="job"></table>
+    <table enableCountByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"
+           tableName="operation_log" catalog="job"></table>
+  </context>
+</generatorConfiguration>

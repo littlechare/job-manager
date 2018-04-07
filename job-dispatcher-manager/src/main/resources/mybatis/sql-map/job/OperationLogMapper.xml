@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.littlehow.job.manager.mapper.job.OperationLogMapper" >
+  <insert id="insertLog" parameterType="com.littlehow.job.manager.model.job.OperationLog">
+    insert into job.operation_log(oper_id,task_id,business_id, oper_type)
+    values (
+    #{operId},#{taskId},#{businessId},#{operType}
+    )
+  </insert>
+</mapper>
