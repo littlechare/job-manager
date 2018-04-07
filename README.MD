@@ -12,8 +12,13 @@
 **此为简单的任务调度中心系统，任务数据存储于MySql上，只支持http的任务回调**
 **没有做高可用处理，但是可以加上监控**
 
-### 三、测试说明
+### 三、API说明
 
+**api是以swagger的方式提供http://localhost/swagger-ui.html**
+
+### 四、测试说明
+
+**测试需要启动job-dispatcher-test下的启动springboot**
 **测试回调地址为http://localhost:8081/job/test/call**
 **可以观察控制台输出信息**
 
