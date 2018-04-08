@@ -4,6 +4,10 @@ import com.littlehow.job.manager.pojo.TaskType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * 任务类型Vo
+ * littlehow 2018/4/6
+ */
 @ApiModel(value = "任务类型", description = "code=1,2为表达式任务, code=3,4为固定频率任务")
 public class TaskTypeVo {
     @ApiModelProperty("任务类型名称")

@@ -7,6 +7,10 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Pattern;
 
+/**
+ * 新增任务校验实体
+ * littlehow 2018/4/6
+ */
 @ApiModel(value = "新增任务实体", description = "新增任务时需要该实体内参数全部不为空")
 public class AddTaskEntity extends BaseTaskEntity {
     @ApiModelProperty(value = "任务类型:1:cron 2:trigger 3:fixed 4:fixed_delay")

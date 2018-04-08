@@ -4,6 +4,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 
+/**
+ * 任务基础实体
+ * littlehow 2018/4/6
+ */
 @ApiModel("任务基本实体")
 public class BaseTaskEntity {
     @ApiModelProperty("任务唯一编号")
