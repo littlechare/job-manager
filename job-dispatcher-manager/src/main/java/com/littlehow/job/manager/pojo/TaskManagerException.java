@@ -6,18 +6,17 @@ package com.littlehow.job.manager.pojo;
  */
 public class TaskManagerException extends RuntimeException {
     private String code;
-    public TaskManagerException(TaskExceptionInfo exceptionInfo) {
-        super(exceptionInfo.name);
-        this.code = exceptionInfo.code;
-    }
 
     /**
-     * 去掉异常堆栈信息
-     * @return
+     * 构造不爬栈的异常
+     * 去掉之前的重写fillInStackTrace
+     * littlehow update 2018/4/10
+     * @see Throwable#Throwable(String, Throwable, boolean, boolean)
+     * @param exceptionInfo
      */
-    @Override
-    public TaskManagerException fillInStackTrace() {
-        return this;
+    public TaskManagerException(TaskExceptionInfo exceptionInfo) {
+        super(exceptionInfo.name, null, true, false);
+        this.code = exceptionInfo.code;
     }
 
     public String getCode() {
