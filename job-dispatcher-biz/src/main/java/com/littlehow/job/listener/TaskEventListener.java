@@ -2,7 +2,6 @@ package com.littlehow.job.listener;
 
 import com.littlehow.job.manager.event.TaskEvent;
 import com.littlehow.job.manager.event.TaskEventType;
-import com.littlehow.job.manager.pojo.TaskDto;
 import com.littlehow.job.service.TaskExecuteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
