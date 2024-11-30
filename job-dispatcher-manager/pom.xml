@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.littlehow</groupId>
     <artifactId>job-dispatcher-manager</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
@@ -74,11 +73,6 @@
                         <groupId>org.slf4j</groupId>
                         <artifactId>log4j-over-slf4j</artifactId>
                         <version>1.7.25</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.yzbus</groupId>
-                        <artifactId>pay-biz-service</artifactId>
-                        <version>1.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
             </plugin>

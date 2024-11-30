@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.littlehow</groupId>
     <artifactId>job-dispatcher-biz</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
@@ -17,13 +16,11 @@
         <dependency>
             <groupId>com.littlehow</groupId>
             <artifactId>job-dispatcher-base</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.littlehow</groupId>
             <artifactId>job-dispatcher-manager</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <!--swagger -->
