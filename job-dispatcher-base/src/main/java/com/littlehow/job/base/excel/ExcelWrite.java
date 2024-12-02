@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author JimChery
+ * @author littlehow
  */
 public class ExcelWrite<T> {
     private SXSSFWorkbook workbook;

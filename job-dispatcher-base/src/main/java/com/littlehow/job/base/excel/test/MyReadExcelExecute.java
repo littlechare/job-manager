@@ -6,7 +6,7 @@ import com.littlehow.job.base.excel.test.bo.Product;
 import java.util.List;
 
 /**
- * @author JimChery
+ * @author littlehow
  * @since 12/2/24 13:32
  */
 public class MyReadExcelExecute implements IReadExcelExecute<Product> {

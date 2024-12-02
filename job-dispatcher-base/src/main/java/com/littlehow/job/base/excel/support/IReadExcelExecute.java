@@ -3,7 +3,7 @@ package com.littlehow.job.base.excel.support;
 import java.util.List;
 
 /**
- * @author JimChery
+ * @author littlehow
  * @since 12/2/24 11:30
  */
 public interface IReadExcelExecute<T> {

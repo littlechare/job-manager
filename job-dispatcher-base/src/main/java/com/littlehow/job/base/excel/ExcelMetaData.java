@@ -15,7 +15,7 @@ import java.time.LocalTime;
 import java.time.temporal.TemporalAccessor;
 
 /**
- * @author JimChery
+ * @author littlehow
  */
 @Setter
 @Getter

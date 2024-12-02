@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author JimChery
+ * @author littlehow
  * @since 11/30/24 12:35
  */
 public class ExcelRead<T> {
@@ -94,11 +94,17 @@ public class ExcelRead<T> {
     // 自定义 SAX 事件处理器
     private class ExcelHandler extends DefaultHandler {
         private final SharedStringsTable sst;
-        private String lastContents; // 单元格内容
-        private boolean isString; // 是否为共享字符串
-        private boolean isCellOpen; // 是否在单元格中
+        // 单元格内容
+        private String lastContents;
+        // 是否为共享字符串
+        private boolean isString;
+        // 是否在单元格中
+        private boolean isCellOpen;
+        // 当前行标
         private int rowIndex;
+        // 当前行的内容
         private List<String> currentRow;
+        // 当要以list输出时，缓存还没输出的数据
         private List<T> dataCache;
 
         ExcelHandler(SharedStringsTable sst) {
@@ -111,14 +117,18 @@ public class ExcelRead<T> {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) {
             if ("row".equals(qName)) {
-                currentRow = new ArrayList<>(); // 新行开始
+                // 行的开始
+                currentRow = new ArrayList<>();
                 rowIndex += 1;
-            } else if ("c".equals(qName)) { // 单元格
+            } else if ("c".equals(qName)) {
+                // 单元格为字母c
                 String cellType = attributes.getValue("t");
-                isString = "s".equals(cellType); // 判断是否为共享字符串
+                // 判断是否为共享字符串
+                isString = "s".equals(cellType);
                 isCellOpen = true;
             }
-            lastContents = ""; // 清空内容
+            // 清空内容
+            lastContents = "";
         }
 
         @Override
@@ -130,15 +140,19 @@ public class ExcelRead<T> {
 
         @Override
         public void endElement(String uri, String localName, String qName) {
-            if ("c".equals(qName)) { // 单元格结束
+            if ("c".equals(qName)) {
+                // 单元格结束
                 String value = lastContents.trim();
                 if (isString) {
+                    // 如果是共享字符串，该内容是数字索引
                     int idx = Integer.parseInt(value);
-                    value = sst.getItemAt(idx).getString(); // 获取共享字符串
+                    value = sst.getItemAt(idx).getString();
                 }
-                currentRow.add(value); // 添加到当前行
+                // 添加到当前行, 列数据最后可以按照下标读取
+                currentRow.add(value);
                 isCellOpen = false;
-            } else if ("row".equals(qName) && rowIndex >= startRowIndex) { // 行结束
+            } else if ("row".equals(qName) && rowIndex >= startRowIndex) {
+                // 行结束
                 T t = convert();
                 if (execute.isList()) {
                     dataCache.add(t);

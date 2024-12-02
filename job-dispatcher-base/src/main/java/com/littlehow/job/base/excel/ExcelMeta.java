@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * 记录表宽度、表头、行高以及excel字段信息
- * @author JimChery
+ * @author littlehow
  */
 @Setter
 @Getter

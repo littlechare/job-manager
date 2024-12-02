@@ -5,6 +5,9 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * littlehow
+ */
 public interface IExcelFieldExecute extends InitializingBean {
 
     Map<String, IExcelFieldExecute> resolve = new ConcurrentHashMap<>();

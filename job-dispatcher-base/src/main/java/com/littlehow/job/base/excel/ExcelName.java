@@ -1,7 +1,7 @@
 package com.littlehow.job.base.excel;
 
 /**
- * @author JimChery
+ * @author littlehow
  */
 public class ExcelName {
     public static String encodeName(String name) {

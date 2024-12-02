@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * @author JimChery
+ * @author littlehow
  * @since 12/2/24 13:26
  */
 public class FeeExcelFilterProcess implements IExcelFieldExecute {

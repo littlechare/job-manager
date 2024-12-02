@@ -102,7 +102,7 @@ public class ExcelClassCache {
      * @param clazz -
      * @return -
      */
-    private static <T> Method getGetMethod(Field field, Class<T> clazz) {
+    private static Method getGetMethod(Field field, Class<?> clazz) {
         try {
             String name = field.getName();
             if (name.length() > 1) {
@@ -116,7 +116,7 @@ public class ExcelClassCache {
         }
     }
 
-    private static <T> Method getSetMethod(Field field, Class<T> clazz) {
+    private static Method getSetMethod(Field field, Class<?> clazz) {
         try {
             String name = field.getName();
             if (name.length() > 1) {
