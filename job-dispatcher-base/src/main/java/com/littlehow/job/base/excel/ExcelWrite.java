@@ -29,6 +29,8 @@ public class ExcelWrite<T> {
 
     private ExcelMeta excelMeta;
 
+    private XSSFCellStyle cellStyle;
+
     private ExcelWrite() {
         // 不开放
     }
@@ -42,8 +44,11 @@ public class ExcelWrite<T> {
     public static <T> ExcelWrite<T> build(Class<T> clazz) {
         ExcelWrite<T> excel = new ExcelWrite<>();
         excel.excelMeta = ExcelClassCache.getMeta(clazz);
-        excel.workbook = new SXSSFWorkbook();
+        excel.workbook = new SXSSFWorkbook(500);
         excel.sheet = excel.workbook.createSheet();
+        excel.cellStyle = (XSSFCellStyle) excel.workbook.createCellStyle();
+        excel.cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        excel.cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         // 设置列头以及列宽
         excel.fullHeader();
         return excel;
@@ -58,12 +63,11 @@ public class ExcelWrite<T> {
         if (CollectionUtils.isEmpty(content)) {
             return this;
         }
-        XSSFCellStyle style = (XSSFCellStyle)workbook.createCellStyle();
         content.forEach(t -> {
             // 创建表头
             SXSSFRow row = sheet.createRow(this.rowIndex++);
             row.setHeight(excelMeta.getHeight());
-            setContent(row, getContent(t), style);
+            setContent(row, getContent(t));
         });
         return this;
     }
@@ -86,8 +90,7 @@ public class ExcelWrite<T> {
         // 设置表头
         SXSSFRow header = this.sheet.createRow(this.rowIndex++);
         header.setHeight(excelMeta.getHeight());
-        XSSFCellStyle style = (XSSFCellStyle)workbook.createCellStyle();
-        setContent(header, excelMeta.getHeader(), style);
+        setContent(header, excelMeta.getHeader());
     }
 
     private List<String> getContent(T t) {
@@ -103,15 +106,13 @@ public class ExcelWrite<T> {
         }
     }
 
-    private void setContent(SXSSFRow row, List<String> content, XSSFCellStyle style) {
+    private void setContent(SXSSFRow row, List<String> content) {
         // 设置第一行
         for (int i = 0, len = content.size(); i < len; i++) {
             SXSSFCell cell = row.createCell(i);
             cell.setCellValue(content.get(i));
             // 创建一个单元格样式
-            cell.setCellStyle(style);
-            style.setAlignment(HorizontalAlignment.CENTER);
-            style.setVerticalAlignment(VerticalAlignment.CENTER);
+            cell.setCellStyle(cellStyle);
         }
     }
 }
